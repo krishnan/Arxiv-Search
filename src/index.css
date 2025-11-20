@@ -1,0 +1,233 @@
+:root {
+  --primary-color: #1a73e8;
+  --text-color: #202124;
+  --secondary-text-color: #5f6368;
+  --background-color: #ffffff;
+  --hover-bg: #f8f9fa;
+  --border-color: #dfe1e5;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.app-container.has-searched {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.app-container.has-searched .app-header {
+  flex-direction: row;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+  box-shadow: 0 1px 6px rgba(32,33,36,0.05);
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.app-container.has-searched .logo {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  margin-right: 40px;
+}
+
+.logo-arxiv {
+  color: #b31b1b; /* Arxiv red-ish */
+}
+
+.logo-search {
+  color: var(--secondary-text-color);
+}
+
+.search-wrapper {
+  width: 100%;
+  max-width: 584px;
+}
+
+.app-container.has-searched .search-wrapper {
+  max-width: 690px;
+}
+
+/* Search Input Overrides */
+/* We are using the classes from the component, but we can target them if needed or rely on the inline styles/classes I added there. 
+   Since I used Tailwind classes in the component but didn't install Tailwind, I need to replicate those styles here! 
+   Wait, I used Tailwind classes in SearchInput.jsx. I need to replace them with standard CSS or implement them here.
+   I will implement the necessary classes here.
+*/
+
+.relative { position: relative; }
+.group { } /* No-op */
+.absolute { position: absolute; }
+.inset-y-0 { top: 0; bottom: 0; }
+.left-0 { left: 0; }
+.pl-4 { padding-left: 1rem; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.pointer-events-none { pointer-events: none; }
+.h-5 { height: 1.25rem; }
+.w-5 { width: 1.25rem; }
+.text-gray-400 { color: #9aa0a6; }
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 45px;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box; /* Critical for width: 100% */
+}
+
+input[type="text"]:hover {
+  box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+  border-color: rgba(223,225,229,0);
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+  border-color: rgba(223,225,229,0);
+}
+
+/* Results */
+.app-main {
+  width: 100%;
+  max-width: 800px; /* Google search width */
+  padding: 0 20px;
+  margin-left: 180px; /* Offset for Google-like layout */
+}
+
+@media (max-width: 1000px) {
+  .app-main {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 20px;
+  }
+}
+
+.results-container {
+  padding-top: 20px;
+}
+
+.results-count {
+  color: var(--secondary-text-color);
+  font-size: 0.875rem;
+  margin-bottom: 20px;
+}
+
+.result-item {
+  margin-bottom: 30px;
+}
+
+.result-title {
+  display: block;
+  color: #1a0dab;
+  font-size: 20px;
+  text-decoration: none;
+  margin-bottom: 4px;
+}
+
+.result-title:hover {
+  text-decoration: underline;
+}
+
+.pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #5f6368;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 10px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.pdf-link:hover {
+  background-color: #f1f3f4;
+  color: #202124;
+}
+
+.result-meta {
+  color: var(--secondary-text-color);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.separator {
+  margin: 0 6px;
+}
+
+.result-summary {
+  color: #4d5156;
+  font-size: 14px;
+  line-height: 1.58;
+  margin: 0;
+}
+
+/* Loading Skeleton */
+.skeleton-item {
+  margin-bottom: 30px;
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 60%;
+  background-color: #f1f3f4;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 100%;
+  background-color: #f1f3f4;
+  margin-bottom: 6px;
+  border-radius: 4px;
+}
+
+.skeleton-text.short {
+  width: 80%;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  padding: 20px;
+  color: var(--secondary-text-color);
+  font-size: 0.9rem;
+}
